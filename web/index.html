@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Expense Tracker</title>
+  <meta name="description" content="Track your income and expenses with category totals, history and light/dark themes.">
+  <meta name="theme-color" content="#F3EEFF" id="metaTheme">
+
+  <!-- Installable app (PWA): Android "Install app" and iPhone "Add to Home Screen" -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Expenses">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Apply the saved theme before the page paints (avoids a white flash in dark mode)
+    (function () {
+      var pref = 'system';
+      try { pref = localStorage.getItem('et.theme') || 'system'; } catch (e) {}
+      var dark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    })();
+  </script>
+</head>
+<body>
+  <!-- Animated background blobs -->
+  <div class="bg" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
+
+  <main id="app">
+    <!-- ================= HOME ================= -->
+    <section class="tab" id="tab-home" aria-label="Home">
+      <header class="home-head">
+        <div>
+          <p class="sub" id="greeting">Hello,</p>
+          <h1 class="title" id="userName">Student 👋</h1>
+        </div>
+        <button class="glass-circle" id="themeToggle" aria-label="Switch light or dark theme"><span id="themeIcon">🌙</span></button>
+      </header>
+
+      <div class="balance-card">
+        <i class="deco d1"></i><i class="deco d2"></i>
+        <p class="bal-label">Total Balance</p>
+        <p class="bal-value" id="balance">₹0</p>
+        <p class="bal-hint">Money received − money spent</p>
+        <div class="bal-pills">
+          <div class="pill"><span class="pill-ic up">↑</span><div><small>Income</small><b id="incomeTotal">₹0</b></div></div>
+          <div class="pill"><span class="pill-ic down">↓</span><div><small>Expenses</small><b id="expenseTotal">₹0</b></div></div>
+        </div>
+      </div>
+
+      <div class="section-head"><h2>Spending by category</h2><button class="link" data-tab="categories">See all</button></div>
+      <div class="hscroll" id="homeCats"></div>
+
+      <div class="section-head"><h2>Recent transactions</h2><button class="link" data-tab="history">See all</button></div>
+      <div class="list swipeable" id="recentList"></div>
+      <div class="glass empty" id="recentEmpty" hidden>
+        <span class="empty-emoji">🪙</span>
+        <b>No transactions yet</b>
+        <p class="sub">Tap the + button to add your first income or expense</p>
+      </div>
+    </section>
+
+    <!-- ================= CATEGORIES ================= -->
+    <section class="tab" id="tab-categories" aria-label="Categories" hidden>
+      <h1 class="title big">Categories</h1>
+      <p class="sub">Where does your money go?</p>
+
+      <div class="glass donut-card">
+        <div class="donut-wrap">
+          <svg viewBox="0 0 200 200" class="donut" id="donut" aria-hidden="true"></svg>
+          <div class="donut-center">
+            <small class="sub">Total spent</small>
+            <b id="donutTotal">₹0</b>
+            <small class="sub">across 9 categories</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-head"><h2>Expense categories</h2></div>
+      <p class="sub small">Tap a category to see its full history</p>
+      <div class="grid" id="catGrid"></div>
+
+      <div class="section-head"><h2>Money received from</h2></div>
+      <div class="hscroll" id="incomeCats"></div>
+    </section>
+
+    <!-- ================= HISTORY ================= -->
+    <section class="tab" id="tab-history" aria-label="History" hidden>
+      <h1 class="title big">History</h1>
+      <p class="sub">Every rupee in and out</p>
+
+      <div class="seg" id="historyFilter" style="--n:3">
+        <i class="seg-ind"></i>
+        <button data-i="0">All</button><button data-i="1">Income</button><button data-i="2">Expense</button>
+      </div>
+
+      <div class="glass summary">
+        <div><small class="sub">Money in</small><b class="income-text" id="moneyIn">₹0</b></div>
+        <div><small class="sub">Money out</small><b class="expense-text" id="moneyOut">₹0</b></div>
+      </div>
+      <p class="hint">Swipe an item left or right to delete it</p>
+
+      <div class="list swipeable" id="historyList"></div>
+      <div class="empty plain" id="historyEmpty" hidden>
+        <span class="empty-emoji">📭</span>
+        <b>Nothing here yet</b>
+        <p class="sub">Tap the + button to add your first income or expense</p>
+      </div>
+    </section>
+
+    <!-- ================= PROFILE ================= -->
+    <section class="tab" id="tab-profile" aria-label="Profile" hidden>
+      <div class="profile-top">
+        <button class="clay avatar" id="avatar" style="--c:#7C5CFF" aria-label="Edit name">S</button>
+        <button class="name-btn" id="editName"><span id="profileName">Student</span><span class="edit-ic">✏️</span></button>
+        <p class="sub">Student • Expense Tracker</p>
+      </div>
+
+      <div class="section-head"><h2>Appearance</h2></div>
+      <div class="glass card">
+        <b class="card-label">Theme</b>
+        <div class="seg" id="themeSeg" style="--n:3">
+          <i class="seg-ind"></i>
+          <button data-i="0">☀️ Light</button><button data-i="1">🌙 Dark</button><button data-i="2">📱 System</button>
+        </div>
+      </div>
+
+      <div class="section-head"><h2>This month</h2></div>
+      <div class="stats">
+        <div class="clay stat" style="--c:#A78BFA"><span>📅</span><b id="statMonth">₹0</b><small>Spent this month</small></div>
+        <div class="clay stat" style="--c:#60A5FA"><span>📊</span><b id="statAvg">₹0</b><small>Average per day</small></div>
+        <div class="clay stat" style="--c:#F472B6"><span id="statTopEmoji">🏆</span><b id="statTop">—</b><small>Top category</small></div>
+        <div class="clay stat" style="--c:#34D399"><span>🧾</span><b id="statCount">0</b><small>Transactions</small></div>
+      </div>
+
+      <div class="section-head"><h2>Data</h2></div>
+      <div class="glass card rows">
+        <button class="row-btn" id="loadSample"><span class="row-ic">🧪</span><span><b>Load sample data</b><small>Fill the app with demo transactions</small></span></button>
+        <hr>
+        <button class="row-btn" id="clearAll"><span class="row-ic">🗑️</span><span><b class="expense-text">Clear all data</b><small>Delete every transaction</small></span></button>
+      </div>
+
+      <p class="footer">Made with ❤️ for my mini project<br>Version 2.0 • Web</p>
+    </section>
+  </main>
+
+  <!-- ================= CATEGORY DETAIL PAGE ================= -->
+  <section class="page" id="detail" aria-label="Category details" hidden>
+    <div class="bg" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
+    <div class="page-inner">
+      <header class="page-head">
+        <button class="glass-circle" id="detailBack" aria-label="Back">←</button>
+        <h2 id="detailKind">Category</h2>
+      </header>
+      <div class="clay detail-card" id="detailCard">
+        <span class="emoji-circle huge" id="detailEmoji">🍔</span>
+        <h1 class="title" id="detailName">Food</h1>
+        <p class="sub" id="detailLabel">Total spent</p>
+        <p class="detail-total" id="detailTotal">₹0</p>
+        <p class="sub" id="detailStats">0 transactions</p>
+      </div>
+      <div class="section-head"><h2>Transactions</h2></div>
+      <p class="hint">Swipe to delete</p>
+      <div class="list swipeable" id="detailList"></div>
+      <div class="empty plain" id="detailEmpty" hidden><span class="empty-emoji">🫙</span><p class="sub">No transactions in this category yet</p></div>
+    </div>
+    <button class="gradient-btn floating" id="detailAdd">＋ Add</button>
+  </section>
+
+  <!-- ================= BOTTOM NAV ================= -->
+  <nav class="navbar" aria-label="Main">
+    <button class="nav-item active" data-tab="home"><span class="nav-ic"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></span><span>Home</span></button>
+    <button class="nav-item" data-tab="categories"><span class="nav-ic"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg></span><span>Categories</span></button>
+    <span class="nav-gap"></span>
+    <button class="nav-item" data-tab="history"><span class="nav-ic"><svg viewBox="0 0 24 24"><path d="M13 3a9 9 0 0 0-9 9H1l3.9 3.9.1.1L9 12H6a7 7 0 1 1 2.05 4.94l-1.42 1.42A9 9 0 1 0 13 3zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8z"/></svg></span><span>History</span></button>
+    <button class="nav-item" data-tab="profile"><span class="nav-ic"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></span><span>Profile</span></button>
+    <button class="fab" id="fab" aria-label="Add transaction"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+  </nav>
+
+  <!-- ================= ADD SHEET ================= -->
+  <div class="backdrop" id="sheetBackdrop" hidden></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="New transaction" hidden>
+    <span class="handle"></span>
+    <h2 class="title">New transaction</h2>
+    <div class="seg" id="typeSeg" style="--n:2">
+      <i class="seg-ind"></i>
+      <button data-i="0">💸 Expense</button><button data-i="1">💰 Income</button>
+    </div>
+    <label class="amount-box" id="amountBox">
+      <span class="currency">₹</span>
+      <input id="amountInput" inputmode="decimal" autocomplete="off" placeholder="0" maxlength="9" aria-label="Amount">
+    </label>
+    <p class="error" id="amountError" hidden>Please enter an amount greater than ₹0</p>
+    <input class="field" id="titleInput" placeholder="What was it for? (optional)" maxlength="40" autocomplete="off">
+    <b class="card-label">Category</b>
+    <div class="chips" id="chips"></div>
+    <label class="field date-field">📅 <input type="date" id="dateInput" aria-label="Date"></label>
+    <input class="field" id="noteInput" placeholder="Note (optional)" maxlength="80" autocomplete="off">
+    <button class="gradient-btn" id="saveBtn">Add Expense</button>
+  </div>
+
+  <!-- ================= DIALOG + SNACKBAR ================= -->
+  <div class="backdrop dialog-backdrop" id="dialog" hidden>
+    <div class="dialog" role="alertdialog" aria-modal="true">
+      <h3 id="dialogTitle"></h3>
+      <p class="sub" id="dialogMsg"></p>
+      <input class="field" id="dialogInput" hidden maxlength="24">
+      <div class="dialog-actions"><button class="link" id="dialogCancel">Cancel</button><button class="link" id="dialogOk">OK</button></div>
+    </div>
+  </div>
+  <div class="snackbar" id="snackbar" role="status"><span id="snackText"></span><button id="snackAction" class="link"></button></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
