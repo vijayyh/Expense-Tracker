@@ -7,6 +7,23 @@ animations, and **light & dark themes**.
 
 Built with **Java**, **XML layouts**, **SQLite** and **Material Design 3** in **Android Studio**.
 
+- **Android:** the Android Studio project in this repo (or the APK).
+- **iPhone (and any phone):** web version, live at **https://expense-tracker-alpha-sandy-47.vercel.app**
+
+---
+
+## Use it on iPhone
+
+1. Open **https://expense-tracker-alpha-sandy-47.vercel.app** in **Safari**.
+2. Tap **Share** (square with an arrow) → **Add to Home Screen** → **Add**.
+3. Open **Expenses** from the home screen. It runs full-screen like an app, works offline, and saves data on the phone.
+
+On Android, the same link works too: in Chrome, tap **⋮ → Install app**.
+
+The web version lives in [`web/`](web) (HTML, CSS, JavaScript, no build step). It has the same screens and features as the
+Android app and stores data in the browser's `localStorage`. Vercel publishes it from the repo root using
+[`vercel.json`](vercel.json), and every push to `main` redeploys it automatically.
+
 ---
 
 ## Features
