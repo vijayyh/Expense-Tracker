@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false">
+
+    <include layout="@layout/view_background" />
+
+    <!-- The 4 screens (fragments) are placed here -->
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Floating glass bottom bar with the clay + button in the centre -->
+    <FrameLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingBottom="14dp">
+
+        <LinearLayout
+            android:id="@+id/navBar"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/glass_nav"
+            android:elevation="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:outlineSpotShadowColor="@color/primary"
+            android:paddingHorizontal="6dp"
+            tools:targetApi="p">
+
+            <LinearLayout
+                android:id="@+id/navHome"
+                style="@style/NavItem">
+
+                <ImageView
+                    android:id="@+id/navHomeIcon"
+                    style="@style/NavIcon"
+                    android:contentDescription="@string/nav_home"
+                    android:src="@drawable/ic_home" />
+
+                <TextView
+                    android:id="@+id/navHomeLabel"
+                    style="@style/NavLabel"
+                    android:text="@string/nav_home" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/navCategories"
+                style="@style/NavItem">
+
+                <ImageView
+                    android:id="@+id/navCategoriesIcon"
+                    style="@style/NavIcon"
+                    android:contentDescription="@string/nav_categories"
+                    android:src="@drawable/ic_grid" />
+
+                <TextView
+                    android:id="@+id/navCategoriesLabel"
+                    style="@style/NavLabel"
+                    android:text="@string/nav_categories" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="78dp"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:id="@+id/navHistory"
+                style="@style/NavItem">
+
+                <ImageView
+                    android:id="@+id/navHistoryIcon"
+                    style="@style/NavIcon"
+                    android:contentDescription="@string/nav_history"
+                    android:src="@drawable/ic_history" />
+
+                <TextView
+                    android:id="@+id/navHistoryLabel"
+                    style="@style/NavLabel"
+                    android:text="@string/nav_history" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/navProfile"
+                style="@style/NavItem">
+
+                <ImageView
+                    android:id="@+id/navProfileIcon"
+                    style="@style/NavIcon"
+                    android:contentDescription="@string/nav_profile"
+                    android:src="@drawable/ic_person" />
+
+                <TextView
+                    android:id="@+id/navProfileLabel"
+                    style="@style/NavLabel"
+                    android:text="@string/nav_profile" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Centre + button: pulsing ring behind a puffy clay circle -->
+        <FrameLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="top|center_horizontal"
+            android:clipChildren="false"
+            android:elevation="12dp"
+            android:outlineProvider="none">
+
+            <View
+                android:id="@+id/fabPulse"
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:layout_gravity="center"
+                android:background="@drawable/pulse_ring"
+                android:elevation="11dp"
+                android:outlineProvider="none" />
+
+            <FrameLayout
+                android:id="@+id/fabAdd"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:layout_gravity="center"
+                android:background="@drawable/fab_clay"
+                android:clickable="true"
+                android:contentDescription="@string/add_transaction"
+                android:elevation="14dp"
+                android:focusable="true"
+                android:outlineSpotShadowColor="@color/primary"
+                tools:targetApi="p">
+
+                <ImageView
+                    android:id="@+id/fabIcon"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="2dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_add"
+                    app:tint="@color/white" />
+            </FrameLayout>
+        </FrameLayout>
+    </FrameLayout>
+</FrameLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Clay button: soft shadow below, puffy gradient body, glossy highlight -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:top="6dp">
+        <shape android:shape="oval">
+            <solid android:color="@color/fab_shadow" />
+        </shape>
+    </item>
+    <item android:bottom="4dp">
+        <shape android:shape="oval">
+            <gradient
+                android:angle="315"
+                android:endColor="@color/primary_2"
+                android:startColor="@color/primary" />
+        </shape>
+    </item>
+    <item android:bottom="4dp">
+        <shape android:shape="oval">
+            <stroke
+                android:width="2dp"
+                android:color="#4DFFFFFF" />
+        </shape>
+    </item>
+    <item
+        android:bottom="34dp"
+        android:left="13dp"
+        android:right="29dp"
+        android:top="9dp">
+        <shape android:shape="oval">
+            <solid android:color="#47FFFFFF" />
+        </shape>
+    </item>
+</layer-list>

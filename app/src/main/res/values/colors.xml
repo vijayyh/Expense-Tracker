@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- LIGHT theme colors (dark theme colors are in values-night/colors.xml) -->
+<resources>
+    <color name="bg_top">#F3EEFF</color>
+    <color name="bg_bottom">#FFF0F6</color>
+
+    <!-- Soft floating background blobs -->
+    <color name="blob1">#B9A4FF</color>
+    <color name="blob1_end">#00B9A4FF</color>
+    <color name="blob2">#FFB0D3</color>
+    <color name="blob2_end">#00FFB0D3</color>
+    <color name="blob3">#9FE6FF</color>
+    <color name="blob3_end">#009FE6FF</color>
+
+    <!-- Glassmorphism -->
+    <color name="glass_fill">#73FFFFFF</color>
+    <color name="glass_fill_strong">#B8FFFFFF</color>
+    <color name="glass_stroke">#E6FFFFFF</color>
+    <color name="nav_bg">#F5FFFFFF</color>
+
+    <color name="text_primary">#1E1B3A</color>
+    <color name="text_secondary">#6E6A8A</color>
+    <color name="text_hint">#A09CB8</color>
+
+    <color name="primary">#7C5CFF</color>
+    <color name="primary_2">#FF6FB5</color>
+    <color name="income">#16A34A</color>
+    <color name="income_2">#14B8A6</color>
+    <color name="expense">#E11D48</color>
+
+    <color name="nav_inactive">#8F8AAD</color>
+    <color name="nav_selected">#267C5CFF</color>
+    <color name="sheet_bg">#FBFAFF</color>
+    <color name="field_bg">#F0ECFB</color>
+    <color name="emoji_circle">#99FFFFFF</color>
+    <color name="donut_track">#147C5CFF</color>
+    <color name="divider">#1A1E1B3A</color>
+    <color name="fab_shadow">#667C5CFF</color>
+    <color name="white">#FFFFFF</color>
+</resources>

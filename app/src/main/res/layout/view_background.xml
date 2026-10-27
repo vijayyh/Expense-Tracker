@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Animated background: 3 soft colour blobs that float slowly (moved in Ui.startBlobAnimation) -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/blob1"
+        android:layout_width="340dp"
+        android:layout_height="340dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="-130dp"
+        android:layout_marginTop="-90dp"
+        android:background="@drawable/blob_1" />
+
+    <View
+        android:id="@+id/blob2"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="-140dp"
+        android:background="@drawable/blob_2" />
+
+    <View
+        android:id="@+id/blob3"
+        android:layout_width="330dp"
+        android:layout_height="330dp"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="-110dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/blob_3" />
+</FrameLayout>

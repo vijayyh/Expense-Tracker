@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:overScrollMode="never"
+    android:paddingBottom="140dp">
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="20dp">
+
+        <!-- Avatar + name -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textAvatar"
+                android:layout_width="96dp"
+                android:layout_height="101dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:textColor="@color/text_primary"
+                android:textSize="40sp" />
+
+            <LinearLayout
+                android:id="@+id/btnEditName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="4dp">
+
+                <TextView
+                    android:id="@+id/textProfileName"
+                    style="@style/Text.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/circle_soft"
+                    android:contentDescription="@string/edit_name"
+                    android:padding="7dp"
+                    android:src="@drawable/ic_edit"
+                    app:tint="@color/primary" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/Text.Sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_sub" />
+        </LinearLayout>
+
+        <!-- Theme -->
+        <TextView
+            style="@style/Text.Section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:text="@string/appearance" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/glass_card"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/theme"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <com.example.expensetracker.SegmentedControl
+                android:id="@+id/segTheme"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+
+        <!-- Monthly stats (clay tiles) -->
+        <TextView
+            style="@style/Text.Section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:text="@string/this_month" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/tileMonth"
+                style="@style/StatTile">
+
+                <TextView
+                    style="@style/StatEmoji"
+                    android:text="📅" />
+
+                <TextView
+                    android:id="@+id/statMonth"
+                    style="@style/StatValue" />
+
+                <TextView
+                    style="@style/StatLabel"
+                    android:text="@string/stat_month" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tileAvg"
+                style="@style/StatTile">
+
+                <TextView
+                    style="@style/StatEmoji"
+                    android:text="📊" />
+
+                <TextView
+                    android:id="@+id/statAvg"
+                    style="@style/StatValue" />
+
+                <TextView
+                    style="@style/StatLabel"
+                    android:text="@string/stat_avg" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/tileTop"
+                style="@style/StatTile">
+
+                <TextView
+                    android:id="@+id/statTopEmoji"
+                    style="@style/StatEmoji"
+                    android:text="🏆" />
+
+                <TextView
+                    android:id="@+id/statTop"
+                    style="@style/StatValue" />
+
+                <TextView
+                    style="@style/StatLabel"
+                    android:text="@string/stat_top" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tileCount"
+                style="@style/StatTile">
+
+                <TextView
+                    style="@style/StatEmoji"
+                    android:text="🧾" />
+
+                <TextView
+                    android:id="@+id/statCount"
+                    style="@style/StatValue" />
+
+                <TextView
+                    style="@style/StatLabel"
+                    android:text="@string/stat_count" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Data actions -->
+        <TextView
+            style="@style/Text.Section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="@string/data" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/glass_card"
+            android:orientation="vertical"
+            android:paddingVertical="6dp">
+
+            <LinearLayout
+                android:id="@+id/rowSample"
+                style="@style/ProfileRow">
+
+                <TextView
+                    style="@style/ProfileRowEmoji"
+                    android:text="🧪" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/ProfileRowTitle"
+                        android:text="@string/load_sample" />
+
+                    <TextView
+                        style="@style/ProfileRowSub"
+                        android:text="@string/load_sample_sub" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@color/divider" />
+
+            <LinearLayout
+                android:id="@+id/rowClear"
+                style="@style/ProfileRow">
+
+                <TextView
+                    style="@style/ProfileRowEmoji"
+                    android:text="🗑️" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/ProfileRowTitle"
+                        android:text="@string/clear_data"
+                        android:textColor="@color/expense" />
+
+                    <TextView
+                        style="@style/ProfileRowSub"
+                        android:text="@string/clear_data_sub" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:text="@string/footer"
+            android:textColor="@color/text_hint"
+            android:textSize="12sp" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

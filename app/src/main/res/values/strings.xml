@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">Expense Tracker</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_categories">Categories</string>
+    <string name="nav_history">History</string>
+    <string name="nav_profile">Profile</string>
+    <string name="add_transaction">Add transaction</string>
+    <string name="toggle_theme">Switch light or dark theme</string>
+    <string name="back">Back</string>
+    <string name="edit_name">Edit name</string>
+
+    <!-- Home -->
+    <string name="total_balance">Total Balance</string>
+    <string name="balance_hint">Money received − money spent</string>
+    <string name="income">Income</string>
+    <string name="expenses">Expenses</string>
+    <string name="spending_by_category">Spending by category</string>
+    <string name="recent_transactions">Recent transactions</string>
+    <string name="see_all">See all</string>
+    <string name="empty_title">No transactions yet</string>
+    <string name="empty_sub">Tap the + button to add your first income or expense</string>
+
+    <!-- Categories -->
+    <string name="categories_title">Categories</string>
+    <string name="categories_sub">Where does your money go?</string>
+    <string name="total_spent">Total spent</string>
+    <string name="across_categories">across 9 categories</string>
+    <string name="expense_categories">Expense categories</string>
+    <string name="tap_category">Tap a category to see its full history</string>
+    <string name="income_sources">Money received from</string>
+
+    <!-- History -->
+    <string name="history_title">History</string>
+    <string name="history_sub">Every rupee in and out</string>
+    <string name="money_in">Money in</string>
+    <string name="money_out">Money out</string>
+    <string name="swipe_hint">Swipe an item left or right to delete it</string>
+    <string name="nothing_here">Nothing here yet</string>
+
+    <!-- Profile -->
+    <string name="profile_sub">Student • Expense Tracker</string>
+    <string name="appearance">Appearance</string>
+    <string name="theme">Theme</string>
+    <string name="this_month">This month</string>
+    <string name="stat_month">Spent this month</string>
+    <string name="stat_avg">Average per day</string>
+    <string name="stat_top">Top category</string>
+    <string name="stat_count">Transactions</string>
+    <string name="data">Data</string>
+    <string name="load_sample">Load sample data</string>
+    <string name="load_sample_sub">Fill the app with demo transactions</string>
+    <string name="clear_data">Clear all data</string>
+    <string name="clear_data_sub">Delete every transaction</string>
+    <string name="footer">Made with ❤️ in Android Studio\nVersion 2.0</string>
+
+    <!-- Add sheet -->
+    <string name="new_transaction">New transaction</string>
+    <string name="currency">₹</string>
+    <string name="amount_zero">0</string>
+    <string name="error_amount">Please enter an amount greater than ₹0</string>
+    <string name="hint_title">What was it for? (optional)</string>
+    <string name="category">Category</string>
+    <string name="change">Change</string>
+    <string name="hint_note">Note (optional)</string>
+
+    <!-- Category detail -->
+    <string name="transactions">Transactions</string>
+    <string name="swipe_short">Swipe to delete</string>
+    <string name="empty_category">No transactions in this category yet</string>
+</resources>
